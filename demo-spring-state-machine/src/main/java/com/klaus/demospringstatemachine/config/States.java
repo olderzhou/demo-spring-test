@@ -8,5 +8,5 @@ package com.klaus.demospringstatemachine.config;
  */
 public enum  States {
 
-    SI, S1, S2
+    SI, S1, S2, S3
 }

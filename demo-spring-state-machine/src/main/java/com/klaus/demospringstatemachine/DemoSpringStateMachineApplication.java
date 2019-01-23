@@ -12,7 +12,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2019/1/24 00:21
  */
 @SpringBootApplication(scanBasePackages = {"com.klaus.demospringstatemachine"})
-
 public class DemoSpringStateMachineApplication {
 
     public static void main(String[] args) {

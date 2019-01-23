@@ -1,5 +1,6 @@
 package com.klaus.demospringstatemachine.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.statemachine.config.EnableStateMachine;
@@ -21,6 +22,7 @@ import java.util.EnumSet;
  */
 @Configuration
 @EnableStateMachine
+@Slf4j
 public class StateMachineConfig
         extends EnumStateMachineConfigurerAdapter<States, Events> {
 
@@ -50,7 +52,13 @@ public class StateMachineConfig
                 .source(States.SI).target(States.S1).event(Events.E1)
                 .and()
                 .withExternal()
-                .source(States.S1).target(States.S2).event(Events.E2);
+                .source(States.S1).target(States.S2).event(Events.E2)
+                .and()
+                .withExternal()
+                .source(States.S2).target(States.S3).event(Events.E3)
+                .and()
+                .withExternal()
+                .source(States.S3).target(States.SI).event(Events.E4);
     }
 
     @Bean
@@ -58,7 +66,8 @@ public class StateMachineConfig
         return new StateMachineListenerAdapter<States, Events>() {
             @Override
             public void stateChanged(State<States, Events> from, State<States, Events> to) {
-                System.out.println("State change to " + to.getId());
+                log.info("State change from {}", from == null? "initialization state": from.getId());
+                log.info("State change to {}", to.getId());
             }
         };
     }
