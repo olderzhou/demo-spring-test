@@ -3,6 +3,8 @@ package com.klaus.demospringstatemachine.config;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.statemachine.StateContext;
+import org.springframework.statemachine.action.Action;
 import org.springframework.statemachine.config.EnableStateMachine;
 import org.springframework.statemachine.config.EnumStateMachineConfigurerAdapter;
 import org.springframework.statemachine.config.builders.StateMachineConfigurationConfigurer;
@@ -40,8 +42,22 @@ public class StateMachineConfig
             throws Exception {
         states
                 .withStates()
-                .initial(States.SI)
+                .initial(States.SI, initialAction())
+                .end(States.S3)
                 .states(EnumSet.allOf(States.class));
+    }
+
+    @Bean
+    public Action<States, Events> initialAction() {
+        return new Action<States, Events>() {
+
+            @Override
+            public void execute(StateContext<States, Events> context) {
+                // do something initially
+                log.info("------------------------------------------------------------------------");
+                log.info("{} initialization invoked by {}", context.getSource(), context.getEvent());
+            }
+        };
     }
 
     @Override
