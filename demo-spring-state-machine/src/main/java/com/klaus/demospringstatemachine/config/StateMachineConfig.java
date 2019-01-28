@@ -74,7 +74,8 @@ public class StateMachineConfig
                 .source(States.S2).target(States.S3).event(Events.E3)
                 .and()
                 .withExternal()
-                .source(States.S3).target(States.SI).event(Events.E4);
+                .source(States.S3).target(States.SI).event(Events.E4)
+        ;
     }
 
     @Bean
