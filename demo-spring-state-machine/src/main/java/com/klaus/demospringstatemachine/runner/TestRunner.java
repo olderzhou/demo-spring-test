@@ -4,6 +4,7 @@ import com.klaus.demospringstatemachine.config.Events;
 import com.klaus.demospringstatemachine.config.States;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.statemachine.StateMachine;
@@ -21,6 +22,9 @@ public class TestRunner implements CommandLineRunner {
     @Autowired
     private StateMachine<States, Events> stateMachine;
 
+    @Value("${klaus.test}")
+    private String test;
+
     @Override
     public void run(String... args) throws Exception {
         stateMachine.sendEvent(Events.E1);
@@ -31,5 +35,8 @@ public class TestRunner implements CommandLineRunner {
         log.info("after E3 stateMachine state is :{}", stateMachine);
         stateMachine.sendEvent(Events.E4);
         log.info("after E4 stateMachine state is :{}", stateMachine);
+
+
+        log.error("msg is :{}", test);
     }
 }
