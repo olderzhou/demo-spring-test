@@ -8,8 +8,7 @@
         <version>2.1.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.klaus</groupId>
-    <artifactId>demo-spring-test</artifactId>
+    <groupId>com.klaus</groupId>    <artifactId>demo-spring-test</artifactId>
     <version>${klaus.version}</version>
     <packaging>pom</packaging>
     <name>demo-spring-test</name>
@@ -17,13 +16,13 @@
 
     <properties>
         <java.version>1.8</java.version>
-
         <klaus.version>1.0.0</klaus.version>
     </properties>
 
 
     <modules>
         <module>demo-spring-state-machine</module>
+        <module>demo-spring-kafka</module>
 
     </modules>
 
@@ -43,6 +42,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
 
@@ -55,11 +60,20 @@
                 <artifactId>demo-spring-state-machine</artifactId>
                 <version>${klaus.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.klaus</groupId>
+                <artifactId>demo-spring-kafka</artifactId>
+                <version>${klaus.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.springframework.statemachine/spring-statemachine-core -->
             <dependency>
                 <groupId>org.springframework.statemachine</groupId>
                 <artifactId>spring-statemachine-core</artifactId>
-                <version>2.0.3.RELEASE</version>
+                <version>2.1.0.RELEASE</version>
             </dependency>
+
         </dependencies>
 
 
