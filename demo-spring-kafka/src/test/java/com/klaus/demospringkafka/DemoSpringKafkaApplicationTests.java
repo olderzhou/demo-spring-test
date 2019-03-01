@@ -1,20 +1,23 @@
 package com.klaus.demospringkafka;
 
-import com.generator.tables.records.UserRecord;
+import com.google.gson.Gson;
+import com.klaus.demospringkafka.school.dao.ISchoolDao;
+import com.klaus.demospringkafka.school.dao.IUserDao;
+import com.klaus.demospringkafka.school.model.School;
+import com.klaus.demospringkafka.school.model.User;
+import com.klaus.demospringkafka.school.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
-import org.jooq.DSLContext;
-import org.jooq.Result;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.util.List;
 
-import static com.generator.tables.User.USER;
-import static org.jooq.impl.DSL.count;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -23,29 +26,49 @@ import static org.junit.Assert.assertEquals;
 public class DemoSpringKafkaApplicationTests {
 
     @Autowired
-    DSLContext create;
+    private ISchoolDao schoolDao;
 
+    @Autowired
+    private IUserDao userDao;
+    @Autowired
+    private IUserService userService;
 
     @Test
-    public void testGetUser() {
-        Integer count = create.select(count(USER.NAME)).from(USER).fetchOne(0, Integer.class);
-        Result<UserRecord> result = create.selectFrom(USER).fetch();
-        log.info("data is {}", result);
-        log.info("count is {}" , count);
-        assertEquals(count.intValue(), result.size());
+    public void test() {
+        log.info("invoked test ................ {}", LocalDateTime.now());
+        List<School> schools =  schoolDao.findAll();
+
+        log.info("schools is {}", schools);
+
+
+        List<User> users = userDao.findAll();
+
+        users.forEach(i -> log.info("user info is {}", i));
+
+        User user = new User();
+        user.setUsername("elena");
+        user.setDescInfo("a pretty girl");
+        user.setUserType(User.UserType.STUDENT.name());
+        user.setIdCode("stu23432413411");
+        user = userDao.save(user);
+
+        log.info("after save user is {}", user);
+
+        assertEquals("elena", user.getUsername());
     }
 
 
-    @Test
-    public void testInsert() {
 
-        log.info("local zone id is {}, now is {}", ZoneId.of("GMT+8"), LocalDateTime.now().atZone(ZoneId.of("GMT+8")));
-        UserRecord userRecord = create.insertInto(USER, USER.NAME, USER.BIRTH_DAY, USER.BIRTH_TIME, USER.BIRTH_SECONDS)
-                .values("damon salvatore", LocalDateTime.now(ZoneId.of("GMT+8")), LocalDateTime.now(ZoneId.of("GMT+8")), (long) LocalDateTime.now(ZoneId.of("GMT+8")).getNano())
-                .returning()
-                .fetchOne();
-        log.info("userRecord is {}", userRecord.getValue(USER.ID));
+    @Test
+    public void testFindUserBySchoolId() {
+        Page<User> users = userService.findUserBySchoolId(1L);
+
+        log.info("page user is {}", new Gson().toJson(users));
+
 
     }
+
+
+
 
 }

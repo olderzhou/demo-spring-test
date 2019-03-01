@@ -3,6 +3,18 @@ package com.klaus.demospringkafka.school.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.time.LocalDateTime;
+
 
 /**
  * @author Klaus Mikaelson
@@ -15,10 +27,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@Entity
 public class School {
 
 
-//    @Id
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String code;
@@ -27,9 +42,20 @@ public class School {
 
     private String nameEn;
 
-    private String type;
+    private String schoolType;
 
-    private String desc;
+    private String descInfo;
+
+
+
+    @CreatedBy
+    private Long createBy;
+    @CreatedDate
+    private LocalDateTime createDate;
+    @LastModifiedBy
+    private Long lastUpdateBy;
+    @LastModifiedDate
+    private LocalDateTime lastUpdateDate;
 
 
 
