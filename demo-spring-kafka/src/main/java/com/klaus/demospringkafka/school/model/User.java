@@ -14,6 +14,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 
 /**
@@ -29,6 +30,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 @Entity
+@Table(name = "t_user")
 @EntityListeners(AuditingEntityListener.class)
 public class User {
 
@@ -58,13 +60,13 @@ public class User {
     @CreatedDate
     @JsonFormat(pattern = "yyyy-mm-dd HH:MM:ss", timezone = "GMT+8")
 //    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime createDate;
+    private Date createDate;
     @LastModifiedBy
     private Long lastUpdateBy;
     @LastModifiedDate
     @JsonFormat(pattern = "yyyy-mm-dd HH:MM:ss", timezone = "GMT+8")
 //    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime lastUpdateDate;
+    private Date lastUpdateDate;
 
     private Long schoolId;
 

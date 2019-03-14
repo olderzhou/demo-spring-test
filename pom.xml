@@ -8,21 +8,24 @@
         <version>2.1.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.klaus</groupId>    <artifactId>demo-spring-test</artifactId>
+    <groupId>com.klaus</groupId>
+    <artifactId>demo-spring-test</artifactId>
     <version>${klaus.version}</version>
     <packaging>pom</packaging>
     <name>demo-spring-test</name>
-    <description>Demo project for Spring Boot</description>
 
     <properties>
-        <java.version>1.8</java.version>
         <klaus.version>1.0.0</klaus.version>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.locale>zh_CN</project.build.locale>
     </properties>
 
 
     <modules>
         <module>demo-spring-state-machine</module>
         <module>demo-spring-kafka</module>
+        <module>kafka-test-a</module>
 
     </modules>
 
@@ -66,6 +69,11 @@
                 <artifactId>demo-spring-kafka</artifactId>
                 <version>${klaus.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.klaus</groupId>
+                <artifactId>kafka-test-a</artifactId>
+                <version>${klaus.version}</version>
+            </dependency>
 
             <!-- https://mvnrepository.com/artifact/org.springframework.statemachine/spring-statemachine-core -->
             <dependency>
@@ -74,9 +82,54 @@
                 <version>2.1.0.RELEASE</version>
             </dependency>
 
+
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>2.2.4.RELEASE</version>
+            </dependency>
+           <!-- <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-streams</artifactId>
+                <version>2.2.4</version>
+            </dependency>-->
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka-test</artifactId>
+                <version>2.2.4.RELEASE</version>
+            </dependency>
+
         </dependencies>
 
 
     </dependencyManagement>
+
+
+
+    <url>http://blog.mikaelson.top</url>
+    <description>Tech practice set</description>
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <mailingLists>
+        <mailingList>
+            <name>Klaus Mikaelson</name>
+            <post>niklausjulie@gmail.com</post>
+        </mailingList>
+    </mailingLists>
+
+    <developers>
+        <developer>
+            <id>Klaus-Mikaelson</id>
+            <name>Klaus Mikaelson</name>
+            <email>niklausjulie@gmail.com</email>
+            <timezone>8</timezone>
+        </developer>
+    </developers>
 
 </project>

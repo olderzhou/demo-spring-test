@@ -24,11 +24,39 @@ public class DemoSpringKafkaApplication {
 //        return new AuditingDateTimeProvider(dateTimeService);
 //    }
 
+    /*@Bean(name = "mapperObject")
+    public ObjectMapper getObjectMapper() {
+        ObjectMapper om = new ObjectMapper();
+        JavaTimeModule javaTimeModule = new JavaTimeModule();
+        javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        javaTimeModule.addSerializer(LocalDate.class, new LocalDateSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        javaTimeModule.addSerializer(LocalTime.class, new LocalTimeSerializer(DateTimeFormatter.ofPattern("HH:mm:ss")));
+        om.registerModule(javaTimeModule);
+        return om;
+    }*/
 
     @Bean
     public JPAQueryFactory jpaQueryFactory(EntityManager entityManager){
         return new JPAQueryFactory(entityManager);
     }
+
+    /*@Component
+    public class KafkaBean {
+
+        private final KafkaTemplate kafkaTemplate;
+
+        @Autowired
+        public KafkaBean(KafkaTemplate kafkaTemplate) {
+            this.kafkaTemplate = kafkaTemplate;
+        }
+
+        @KafkaListener(topics = "someTopic")
+        public void processMessage(String content) {
+
+        }
+    }*/
+
+
 
     public static void main(String[] args) {
         SpringApplication.run(DemoSpringKafkaApplication.class, args);
