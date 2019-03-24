@@ -1,0 +1,6 @@
+#response:
+#  code-map:
+#    - "1000": "user not exists"
+#    - "2000": "user not exists"
+#    - "3000": "user not exists"
+#    - "4000": "user not exists"

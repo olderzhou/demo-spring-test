@@ -1,0 +1,5 @@
+
+my:
+  servers:
+    - test.example.com
+    - another.example.com
