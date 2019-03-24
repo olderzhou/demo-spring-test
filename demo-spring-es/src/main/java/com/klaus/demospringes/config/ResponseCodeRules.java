@@ -17,17 +17,11 @@ import java.util.Map;
  * @date 2019/3/24 19:56
  */
 
-//@Component
-//@ConfigurationProperties(prefix="response")
+@Component
+@ConfigurationProperties(prefix="response")
 @ToString
 @Data
 public class ResponseCodeRules {
 
-    private List<Map<String, String>> codeMap = new ArrayList<Map<String, String>>();
-
-
-//    public
-
-
-
+    private Map<String, String> codeMap ;
 }

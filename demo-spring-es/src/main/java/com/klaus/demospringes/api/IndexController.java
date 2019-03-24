@@ -1,6 +1,8 @@
 package com.klaus.demospringes.api;
 
 import com.klaus.demospringes.config.MyConfig;
+import com.klaus.demospringes.config.ResponseCodeRules;
+import com.klaus.demospringes.ex.GlobalRestExceptionHandler;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -22,19 +24,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/myconfigs")
 @Api(tags = "Index Test Module")
 @Slf4j
-public class IndexController {
+public class IndexController extends GlobalRestExceptionHandler {
 
     @Autowired
     private MyConfig config;
 
-//    @Autowired
-//    private ResponseCodeRules codeRules;
+    @Autowired
+    private ResponseCodeRules codeRules;
 
 
     @ApiOperation(value = "getDefault", notes = "config is kind of configuration about me")
     @GetMapping("/getDefault")
     public ResponseEntity<MyConfig> getDefault() {
         log.info("config is :{}", config);
+        int i = 3/0;
         return ResponseEntity.status(HttpStatus.OK).body(config);
     }
 
@@ -48,9 +51,9 @@ public class IndexController {
 
     @GetMapping("/response/rules")
     @ApiOperation(value = "get rule config", notes = "rule config is kind of configuration about response")
-    public ResponseEntity<MyConfig> getResponseRuleConfigs() {
-        log.info("config is :{}", config);
-        return ResponseEntity.status(HttpStatus.OK).body(config);
+    public ResponseEntity<ResponseCodeRules> getResponseRuleConfigs() {
+        log.info("config is :{}", codeRules);
+        return ResponseEntity.status(HttpStatus.OK).body(codeRules);
     }
 
 
