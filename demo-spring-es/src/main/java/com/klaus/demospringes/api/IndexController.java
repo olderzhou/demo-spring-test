@@ -1,7 +1,8 @@
 package com.klaus.demospringes.api;
 
 import com.klaus.demospringes.config.MyConfig;
-import com.klaus.demospringes.config.ResponseCodeRules;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2019/3/24 20:07
  */
 
-@RestController("/myconfigs")
+@RestController
+@RequestMapping("/myconfigs")
+@Api(tags = "Index Test Module")
 @Slf4j
 public class IndexController {
 
@@ -28,12 +31,14 @@ public class IndexController {
 //    private ResponseCodeRules codeRules;
 
 
-    @GetMapping()
+    @ApiOperation(value = "getDefault", notes = "config is kind of configuration about me")
+    @GetMapping("/getDefault")
     public ResponseEntity<MyConfig> getDefault() {
         log.info("config is :{}", config);
         return ResponseEntity.status(HttpStatus.OK).body(config);
     }
 
+    @ApiOperation(value = "get config", notes = "config is kind of configuration about me")
     @GetMapping("/my")
     public ResponseEntity<MyConfig> getMyConfig() {
         log.info("config is :{}", config);
@@ -42,6 +47,7 @@ public class IndexController {
 
 
     @GetMapping("/response/rules")
+    @ApiOperation(value = "get rule config", notes = "rule config is kind of configuration about response")
     public ResponseEntity<MyConfig> getResponseRuleConfigs() {
         log.info("config is :{}", config);
         return ResponseEntity.status(HttpStatus.OK).body(config);
