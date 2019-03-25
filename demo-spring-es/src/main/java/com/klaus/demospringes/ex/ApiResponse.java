@@ -6,13 +6,13 @@ import org.springframework.http.HttpStatus;
 
 /**
  * @author Klaus Mikaelson
- * @class demo-spring-test-com.klaus.demospringes.ex ApiErrorResponse
+ * @class demo-spring-test-com.klaus.demospringes.ex ApiResponse
  * @description:
  * @date 2019/3/25 02:08
  */
 @Data
 @Builder
-public class ApiErrorResponse {
+public class ApiResponse {
 
     private HttpStatus status;
     private String error_code;

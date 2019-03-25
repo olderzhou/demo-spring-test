@@ -29,15 +29,21 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.elasticsearch.client</groupId>
+                    <artifactId>transport</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.elasticsearch.client</groupId>
-            <artifactId>elasticsearch-rest-client</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.elasticsearch.client</groupId>-->
+            <!--<artifactId>elasticsearch-rest-client</artifactId>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -51,6 +57,37 @@
         </dependency>
 
     </dependencies>
+
+    <profiles>
+
+        <profile>
+            <id>normal</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+
+            <dependencies>
+                <dependency>
+                    <groupId>org.elasticsearch.client</groupId>
+                    <artifactId>transport</artifactId>
+                </dependency>
+
+
+            </dependencies>
+
+
+        </profile>
+
+        <profile>
+            <id>huawei</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+
+
+        </profile>
+
+    </profiles>
 
     <build>
         <plugins>

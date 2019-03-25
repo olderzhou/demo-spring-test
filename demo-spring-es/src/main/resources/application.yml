@@ -12,8 +12,8 @@ spring:
   data:
     elasticsearch:
       cluster-name: docker-cluster
-#      cluster-nodes: 192.168.43.235:9300
-      cluster-nodes: 172.17.208.49:9300
+      cluster-nodes: 192.168.43.235:9300
+#      cluster-nodes: 172.17.208.49:9300
       repositories:
         enabled: true
       properties:

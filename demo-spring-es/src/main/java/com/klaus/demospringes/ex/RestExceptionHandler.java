@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class RestExceptionHandler {
 
     @ExceptionHandler(CustomNotFoundException.class)
-    public ApiErrorResponse handleNotFoundException(CustomNotFoundException ex) {
-        ApiErrorResponse response =ApiErrorResponse.builder()
+    public ApiResponse handleNotFoundException(CustomNotFoundException ex) {
+        ApiResponse response = ApiResponse.builder()
                 .status(HttpStatus.NOT_FOUND)
                 .error_code("NOT_FOUND")
                 .message(ex.getLocalizedMessage()).build();
