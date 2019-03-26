@@ -1,11 +1,13 @@
 package com.klaus.demospringes.api;
 
+import com.klaus.demospringes.config.ElasticsearchUtils;
 import com.klaus.demospringes.config.MyConfig;
 import com.klaus.demospringes.config.ResponseCodeRules;
 import com.klaus.demospringes.ex.GlobalRestExceptionHandler;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.elasticsearch.action.admin.cluster.health.ClusterHealthResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,23 +35,21 @@ public class IndexController extends GlobalRestExceptionHandler {
     private ResponseCodeRules codeRules;
 
 
-    @ApiOperation(value = "getDefault", notes = "config is kind of configuration about me")
-    @GetMapping("/getDefault")
-    public ResponseEntity<MyConfig> getDefault() {
-        log.info("config is :{}", config);
-        int i = 3/0;
-        return ResponseEntity.status(HttpStatus.OK).body(config);
+    @ApiOperation(value = "cluster", notes = "cluster is es, this api show cluster's health status")
+    @GetMapping("/cluster")
+    public ResponseEntity<ClusterHealthResponse> getClusterHealth() {
+        return ResponseEntity.status(HttpStatus.OK).body(ElasticsearchUtils.clusterHealth());
     }
 
     @ApiOperation(value = "get config", notes = "config is kind of configuration about me")
-    @GetMapping("/my")
+    @GetMapping("/config")
     public ResponseEntity<MyConfig> getMyConfig() {
         log.info("config is :{}", config);
         return ResponseEntity.status(HttpStatus.OK).body(config);
     }
 
 
-    @GetMapping("/response/rules")
+    @GetMapping("/rules")
     @ApiOperation(value = "get rule config", notes = "rule config is kind of configuration about response")
     public ResponseEntity<ResponseCodeRules> getResponseRuleConfigs() {
         log.info("config is :{}", codeRules);

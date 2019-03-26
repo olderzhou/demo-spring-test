@@ -1,6 +1,8 @@
 package com.klaus.demospringes.config;
 
 import lombok.extern.slf4j.Slf4j;
+import org.elasticsearch.ElasticsearchSecurityException;
+import org.elasticsearch.action.admin.cluster.health.ClusterHealthResponse;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsRequest;
@@ -52,6 +54,20 @@ public class ElasticsearchUtils {
     public void init() {
         client = this.transportClient;
     }
+
+
+    public static ClusterHealthResponse clusterHealth() {
+        ClusterHealthResponse healths;
+        try {
+            healths = client.admin().cluster().prepareHealth().get();
+        } catch (ElasticsearchSecurityException e) {
+            log.info("ElasticsearchSecurityException is {}",e);
+            return null;
+        }
+        log.info(healths.toString());
+        return  healths;
+    }
+
 
     /**
      * 创建索引

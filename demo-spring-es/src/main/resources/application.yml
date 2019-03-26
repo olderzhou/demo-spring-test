@@ -12,7 +12,7 @@ spring:
   data:
     elasticsearch:
       cluster-name: docker-cluster
-      cluster-nodes: 192.168.43.235:9300
+      cluster-nodes: ${ES_CLUSTER_NODES:192.168.43.235:9300}
 #      cluster-nodes: 172.17.208.49:9300
       repositories:
         enabled: true
@@ -24,7 +24,7 @@ spring:
 
 
 logging:
-  config: classpath:logback-spring.xml
+  config: ${LOG_CONFIG_PATH:classpath:logback-spring.xml}
 
 swagger:
   # 是否启用swagger，默认：true
@@ -35,7 +35,7 @@ swagger:
     # 维护人
     name: "Klaus Mikaelson"
     email: "niklausjulie@gmail.com"
-    url: "https://www.yunlingfly.cn"
+    url: "https://www.blog.klausmikaelson.top"
   # 版本
   version: "1.0"
   # 描述

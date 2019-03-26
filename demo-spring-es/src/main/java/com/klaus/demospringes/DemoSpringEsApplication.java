@@ -11,8 +11,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableSwagger2Doc
 public class DemoSpringEsApplication {
 
+
+
     public static void main(String[] args) {
         SpringApplication.run(DemoSpringEsApplication.class, args);
+
     }
 
 }

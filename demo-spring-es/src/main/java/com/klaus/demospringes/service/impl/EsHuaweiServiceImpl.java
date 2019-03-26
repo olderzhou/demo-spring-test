@@ -1,6 +1,9 @@
 package com.klaus.demospringes.service.impl;
 
+import com.klaus.demospringes.config.ElasticsearchUtils;
 import com.klaus.demospringes.service.EsService;
+import lombok.extern.slf4j.Slf4j;
+import org.elasticsearch.action.admin.cluster.health.ClusterHealthResponse;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +15,14 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Profile({"huawei"})
+@Slf4j
 public class EsHuaweiServiceImpl implements EsService {
     @Override
     public String info() {
-        return null;
+
+        log.info("huawei es service invoked");
+
+        ClusterHealthResponse response = ElasticsearchUtils.clusterHealth();
+        return "success";
     }
 }
