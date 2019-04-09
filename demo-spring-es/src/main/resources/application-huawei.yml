@@ -3,3 +3,23 @@ my:
   servers:
     - local.example.com
     - another.example.com
+
+
+
+
+huawei:
+  es:
+    is-secure-mode: true
+    es-server-hosts: 127.0.0.1:9300
+    max-retry-timeout-millis: 30000
+    index: haizhi-graph
+    type: user
+    id: 12312
+    shard-num: 2
+    connectTimeout: 6000
+    socketTimeout: 6000
+    schema: https
+
+kerberos:
+  security:
+    jaas-path: ${JASS_PATH:resource/jaas.conf}

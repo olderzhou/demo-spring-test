@@ -20,6 +20,20 @@ spring:
         path:
           logs: ./elasticsearch/log
           data: ./elasticsearch/data
+  kafka:
+    topic: klaus
+    consumer:
+      group-id: test-demo
+#      key-deserializer: org.springframework.kafka.support.serializer.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      fetch-min-size: 10
+      bootstrap-servers: 127.0.0.1:9092
+      properties:
+        spring.json.trusted.packages: com.klaus.demospringes.doc
+    producer:
+      bootstrap-servers: 127.0.0.1:9092
+#      key-serializer: org.springframework.kafka.support.serializer.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 
 

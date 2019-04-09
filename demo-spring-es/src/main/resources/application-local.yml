@@ -3,3 +3,4 @@ my:
   servers:
     - local.example.com
     - another.example.com
+    - blog.klausmikaelson.top

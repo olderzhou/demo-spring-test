@@ -1,6 +1,8 @@
 package com.klaus.demospringes.doc;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -17,6 +19,8 @@ import javax.annotation.Generated;
 
 @Document(indexName = "demo-spring-es", type = "user")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
     private String id;

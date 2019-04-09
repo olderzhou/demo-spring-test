@@ -8,8 +8,8 @@
     <property name="LOG_PATH" value="/var/logs/${APP_NAME}"/>
     <property name="LOG_FILE" value="${LOG_PATH}/${APP_NAME}.log"/>
 
-    <logger name="org.springframework.web" level="debug"/>
-    <logger name="org.springframework.boot.context.config" level="debug"/>
+    <!--<logger name="org.springframework.web" level="debug"/>-->
+    <!--<logger name="org.springframework.boot.context.config" level="debug"/>-->
 
     <include resource="org/springframework/boot/logging/logback/defaults.xml" />
     <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/spring.log}"/>
@@ -19,7 +19,7 @@
 
     <springProfile name="local">
         <!-- 开发环境时激活 -->
-        <root level="info">
+        <root level="INFO">
             <appender-ref ref="CONSOLE" />
             <appender-ref ref="FILE" />
         </root>

@@ -1,0 +1,9 @@
+Client {
+com.sun.security.auth.module.Krb5LoginModule required
+storeKey=true
+principal="test_admin@HADOOP.COM"
+useTicketCache=false
+keyTab="./conf/user.keytab"
+debug=false
+useKeyTab=true;
+};

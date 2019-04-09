@@ -50,10 +50,33 @@
             <version>2.8.5</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>transport</artifactId>
+        </dependency>
+
 
         <dependency>
             <groupId>com.spring4all</groupId>
             <artifactId>swagger-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-streams</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
         </dependency>
 
     </dependencies>
@@ -71,8 +94,6 @@
                     <groupId>org.elasticsearch.client</groupId>
                     <artifactId>transport</artifactId>
                 </dependency>
-
-
             </dependencies>
 
 
@@ -83,6 +104,18 @@
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
+
+            <dependencies>
+
+                <dependency>
+                    <groupId>huawei.elasticsearch.client</groupId>
+                    <artifactId>elasticsearch-rest-client</artifactId>
+                    <version>6.1.3</version>
+                    <scope>system</scope>
+                    <systemPath>${project.basedir}/lib/elasticsearch-rest-client-6.1.3.jar</systemPath>
+                </dependency>
+
+            </dependencies>
 
 
         </profile>
