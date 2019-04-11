@@ -12,6 +12,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Klaus Mikaelson
@@ -59,19 +61,23 @@ public class StatusController {
     @Value("${spring.kafka.topic}")
     private String topic;
 
+    private final AtomicInteger count = new AtomicInteger(0);
 
     @GetMapping("/send")
     @ApiOperation(value = "send kafka", notes = "for kafka test")
     public ResponseEntity<String> sendToKafka(@RequestParam(value = "name", defaultValue = "klaus") String name){
 
-        User user = new User(
-                UUID.randomUUID().toString().replace("-",""),
-                "klaus",
-                String.valueOf(System.currentTimeMillis())
-        );
-        log.info("user is {}", user);
-//        kafkaTemplate.send(topic+"1", new Gson().toJson(user));
-        kafkaTemplate.send(topic+"1", user);
+        for(int i = 0; i<10; i++){
+
+            User user = new User(
+                    UUID.randomUUID().toString().replace("-",""),
+                    name+count.addAndGet(1),
+                    String.valueOf(System.currentTimeMillis())
+            );
+            log.info("user is {}", user);
+    //        kafkaTemplate.send(topic+"1", new Gson().toJson(user));
+            kafkaTemplate.send(topic+"1", user);
+        }
         return ResponseEntity.ok("success");
     }
 
@@ -79,7 +85,7 @@ public class StatusController {
 
 
     @KafkaListener(topics = {"klaus1"})
-    public void consumeTopic(ConsumerRecord<?, ?> record) {
+    public void consumeTopic(ConsumerRecord<?, ?> record/*, Acknowledgment acknowledgment*/) {
         Optional<?> kafkaMessage = Optional.ofNullable(record.value());
 
         if (kafkaMessage.isPresent()) {
@@ -88,6 +94,7 @@ public class StatusController {
 
             log.info("----------------- record = {}", record);
             log.info("------------------ message = {}", message);
+//            acknowledgment.acknowledge();
         }
 
     }
