@@ -2,12 +2,15 @@ package com.klaus.demospringes.api;
 
 import com.google.gson.Gson;
 import com.klaus.demospringes.doc.User;
+import com.klaus.demospringes.repo.UserRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -61,7 +64,19 @@ public class StatusController {
     @Value("${spring.kafka.topic}")
     private String topic;
 
+
+    @Bean
+    public NewTopic topic1() {
+        return new NewTopic(topic, 10, (short) 2);
+    }
+
+
+
     private final AtomicInteger count = new AtomicInteger(0);
+
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/send")
     @ApiOperation(value = "send kafka", notes = "for kafka test")
@@ -76,7 +91,7 @@ public class StatusController {
             );
             log.info("user is {}", user);
     //        kafkaTemplate.send(topic+"1", new Gson().toJson(user));
-            kafkaTemplate.send(topic+"1", user);
+            kafkaTemplate.send(topic, user);
         }
         return ResponseEntity.ok("success");
     }
@@ -84,17 +99,20 @@ public class StatusController {
 
 
 
-    @KafkaListener(topics = {"klaus1"})
-    public void consumeTopic(ConsumerRecord<?, ?> record/*, Acknowledgment acknowledgment*/) {
-        Optional<?> kafkaMessage = Optional.ofNullable(record.value());
+    @KafkaListener(topics = {"klaus"})
+    public void consumeTopic(ConsumerRecord<String, User> record/*, Acknowledgment acknowledgment*/) {
+        Optional<User> kafkaMessage = Optional.ofNullable(record.value());
 
         if (kafkaMessage.isPresent()) {
 
-            Object message = kafkaMessage.get();
+            User message = kafkaMessage.get();
 
             log.info("----------------- record = {}", record);
             log.info("------------------ message = {}", message);
-//            acknowledgment.acknowledge();
+//            acknowledgment.acknowledge()
+//            ;
+
+            userRepository.save(message);
         }
 
     }
