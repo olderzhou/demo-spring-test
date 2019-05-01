@@ -6,7 +6,7 @@
     <!--<property name="LOG_PATH" value="c:/temp/logs/${APP_NAME}"/>-->
     <property name="LOG_PATH" value="/home/ap/dip/demo-es/logs/${APP_NAME}"/>
     <property name="LOG_PATH" value="/var/logs/${APP_NAME}"/>
-    <property name="LOG_FILE" value="${LOG_PATH}/${APP_NAME}.log"/>
+    <!--<property name="LOG_FILE" value="${LOG_PATH}/${APP_NAME}.log"/>-->
 
     <!--<logger name="org.springframework.web" level="debug"/>-->
     <!--<logger name="org.springframework.boot.context.config" level="debug"/>-->

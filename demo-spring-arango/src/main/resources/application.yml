@@ -1,0 +1,75 @@
+server:
+  port: 7090
+  servlet:
+    context-path: /demo-arango
+    application-display-name: demo-arango
+spring:
+  application:
+    name: demo-arango
+  profiles:
+    active: local
+  kafka:
+    topic: klaus
+    bootstrap-servers: 192.168.12.113:9092
+    consumer:
+      group-id: test-arango
+#      key-deserializer: org.springframework.kafka.support.serializer.StringDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      fetch-min-size: 20
+      fetch-max-wait: 6000
+      enable-auto-commit: true
+      max-poll-records: 100
+      auto-commit-interval: 10
+      auto-offset-reset: earliest
+#      client-id: com.klaus
+      properties:
+        spring.json.trusted.packages: com.klaus.demospringes.doc
+    producer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      batch-size: 10
+      retries: 2
+      acks: -1
+    #    template:
+#      default-topic: graph_ccb_dev.*
+    listener:
+      type: batch
+      ack-mode: batch
+      ack-time: 60
+      poll-timeout: 3000
+#      client-id: com.klaus
+      concurrency: 1
+#    admin:
+#      properties:
+
+
+
+
+
+logging:
+  config: ${LOG_CONFIG_PATH:classpath:logback-spring.xml}
+
+swagger:
+  # 是否启用swagger，默认：true
+  enabled: true
+  # 标题
+  title: "Spring Boot 测试 arango"
+  contact:
+    # 维护人
+    name: "Klaus Mikaelson"
+    email: "niklausjulie@gmail.com"
+    url: "https://www.blog.klausmikaelson.top"
+  # 版本
+  version: "1.0"
+  # 描述
+  description: "API 描述"
+  # swagger扫描的基础包，默认：全扫描
+  base-package: "com.klaus.demospringes.api"
+  # 需要处理的基础URL规则，默认：/**
+  base-path: /**
+  # 需要排除的URL规则，默认：空
+  #  exclude-path: ""
+  license: "Apache License, Version 2.0"
+  license-url: "https://www.apache.org/licenses/LICENSE-2.0.html"
+debug: false

@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    active: local
+  application:
+    name: dc-meta
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    enabled: true
+debug: false
+
+server:
+  port: 10010
+  tomcat:
+    uri-encoding: UTF-8
+    accesslog:
+      enabled: true
+logging:
+  path: /var/log/${spring.application.name}
+  file:
+    max-size: 100MB
+    max-history: 60
+  level:
+    root: info
+    com.klaus: debug
+    org.hibernate.sql: debug

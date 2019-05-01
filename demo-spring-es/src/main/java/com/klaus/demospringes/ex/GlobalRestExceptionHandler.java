@@ -1,5 +1,6 @@
 package com.klaus.demospringes.ex;
 
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class GlobalRestExceptionHandler extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(Exception.class)
     public ResponseEntity defaultExceptionHandler(HttpServletRequest request, final Exception e) {
-        log.info("request is {}" ,  request);
+        logRequert(request);
         ApiResponse response = ApiResponse.builder()
                 .status(HttpStatus.BAD_REQUEST)
                 .error_code(e.getMessage())
@@ -31,6 +32,14 @@ public class GlobalRestExceptionHandler extends ResponseEntityExceptionHandler {
                 .path(request.getRequestURI())
                 .build()   ;
         return new ResponseEntity<>(response, response.getStatus());
+    }
+
+
+    public void logRequert(HttpServletRequest request) {
+        log.info("IP is :{}, URL is :{}, parameters is :{}",
+                request.getPathInfo(),
+                request.getRequestURI(),
+                new Gson().toJson(request.getParameterMap()));
     }
 
 /*

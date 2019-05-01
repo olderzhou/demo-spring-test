@@ -1,0 +1,27 @@
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+#    enabled: false
+spring:
+  profiles:
+    active: local
+  application:
+    name: register-center
+
+
+logging:
+  path: /var/logs/${ APPPLICATION_NAME:${spring.application.name}}
+  file:
+    max-size: 100MB
+    max-history: 60
+  level:
+    root: info
+    com.klaus: debug
+    org.hibernate.sql: debug

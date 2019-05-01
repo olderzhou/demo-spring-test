@@ -60,12 +60,8 @@ public class ElasticsearchUtils {
 
     public static ClusterHealthResponse clusterHealth() {
         ClusterHealthResponse healths;
-        try {
-            healths = client.admin().cluster().prepareHealth().get();
-        } catch (ElasticsearchSecurityException e) {
-            log.info("ElasticsearchSecurityException is {}",e);
-            return null;
-        }
+        log.info("client is :{}", client);
+        healths = client.admin().cluster().prepareHealth().get();
         log.info(healths.toString());
         return  healths;
     }

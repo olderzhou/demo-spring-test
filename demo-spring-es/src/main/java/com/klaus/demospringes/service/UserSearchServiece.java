@@ -15,4 +15,9 @@ public interface UserSearchServiece {
      */
     public Map<String, Object> findUser() ;
 
+
+
+    public void createType() ;
+
+
 }

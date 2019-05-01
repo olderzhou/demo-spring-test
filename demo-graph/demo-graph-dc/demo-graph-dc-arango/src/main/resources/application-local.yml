@@ -1,0 +1,16 @@
+#charset config
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  data:
+    #arango database config
+    arangodb:
+      hosts: 127.0.0.1:8529
+      database: graph_klaus
+      user: root
+      password: 123456
+
+

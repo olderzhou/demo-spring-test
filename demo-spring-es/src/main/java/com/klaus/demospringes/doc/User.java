@@ -9,6 +9,7 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.annotation.Generated;
+import javax.validation.constraints.Max;
 
 /**
  * @author Klaus Mikaelson
@@ -29,6 +30,7 @@ public class User {
     private String name;
 
     @Field(type = FieldType.Text, searchAnalyzer = "ik_max_word",analyzer = "ik_smart")
+//    @Max(value = 15)
     private String mobile;
 
 

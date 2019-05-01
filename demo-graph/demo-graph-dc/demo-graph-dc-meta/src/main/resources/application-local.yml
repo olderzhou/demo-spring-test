@@ -1,0 +1,34 @@
+
+
+
+spring:
+  application:
+    name: dc-meta
+  datasource:
+    url: jdbc:mysql://localhost:3306/graph_klaus?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: admin123
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect：com.klaus.demographdcmeta.config.MySQL5DialectUtf8mb4
+  redis:
+    cluster:
+      nodes: 127.0.0.1:6379
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: 10ms
+        max-idle: 8
+        min-idle: 0
+  cache:
+    redis:
+      key-prefix: ${spring.application.name}
+      cache-null-values: true

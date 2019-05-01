@@ -3,7 +3,6 @@ server:
   servlet:
     context-path: /demo-es
     application-display-name: demo-es
-
 spring:
   application:
     name: demo-es
@@ -12,7 +11,11 @@ spring:
   data:
     elasticsearch:
       cluster-name: docker-cluster
+#      cluster-nodes: ${ES_CLUSTER_NODES:192.168.1.39:9300}
       cluster-nodes: ${ES_CLUSTER_NODES:192.168.43.235:9300}
+#      cluster-nodes: ${ES_CLUSTER_NODES:127.0.0.1:9300}
+#      cluster-nodes: ${ES_CLUSTER_NODES:172.27.0.2:9300,172.27.0.3:9300}
+
 #      cluster-nodes: ${ES_CLUSTER_NODES:192.168.1.223:24147}
 #      cluster-nodes: 172.17.208.49:9300
       repositories:
@@ -23,18 +26,40 @@ spring:
           data: ./elasticsearch/data
   kafka:
     topic: klaus
+    bootstrap-servers: 192.168.12.113:9092
     consumer:
       group-id: test-demo
 #      key-deserializer: org.springframework.kafka.support.serializer.StringDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      fetch-min-size: 10
-      bootstrap-servers: 127.0.0.1:9092
+      fetch-min-size: 20
+      fetch-max-wait: 6000
+      enable-auto-commit: true
+      max-poll-records: 100
+      auto-commit-interval: 10
+      auto-offset-reset: earliest
+#      client-id: com.klaus
       properties:
         spring.json.trusted.packages: com.klaus.demospringes.doc
     producer:
-      bootstrap-servers: 127.0.0.1:9092
-#      key-serializer: org.springframework.kafka.support.serializer.StringSerializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      batch-size: 10
+      retries: 2
+      acks: -1
+    #    template:
+#      default-topic: graph_ccb_dev.*
+    listener:
+      type: batch
+      ack-mode: batch
+      ack-time: 60
+      poll-timeout: 3000
+#      client-id: com.klaus
+      concurrency: 1
+#    admin:
+#      properties:
+
+
 
 
 
@@ -63,3 +88,4 @@ swagger:
   #  exclude-path: ""
   license: "Apache License, Version 2.0"
   license-url: "https://www.apache.org/licenses/LICENSE-2.0.html"
+debug: false

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="APP_NAME" value="demo-arango"/>
+    <property name="LOG_FILE_MAX_SIZE" value="100MB"/>
+    <property name="LOG_FILE_MAX_HISTORY" value="60"/>
+    <!--<property name="LOG_PATH" value="c:/temp/logs/${APP_NAME}"/>-->
+    <!--<property name="LOG_PATH" value="/home/ap/dip/demo-es/logs/${APP_NAME}"/>-->
+    <property name="LOG_PATH" value="/var/logs/${APP_NAME}"/>
+    <!--<property name="LOG_FILE" value="${LOG_PATH}/${APP_NAME}.log"/>-->
+
+    <!--<logger name="org.springframework.web" level="debug"/>-->
+    <!--<logger name="org.springframework.boot.context.config" level="debug"/>-->
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/spring.log}"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+    <include resource="org/springframework/boot/logging/logback/file-appender.xml" />
+
+
+    <springProfile name="local">
+        <!-- 开发环境时激活 -->
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE" />
+        </root>
+    </springProfile>
+
+    <springProfile name="dev, test, prod">
+        <!-- 开发，测试的时候激活-->
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE" />
+        </root>
+    </springProfile>
+
+
+</configuration>

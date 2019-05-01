@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.klaus</groupId>
+        <artifactId>demo-spring-test</artifactId>
+        <version>${klaus.version}</version>
+    </parent>
+    <groupId>com.klaus</groupId>
+    <artifactId>demo-graph</artifactId>
+    <version>${klaus.version}</version>
+    <name>demo-graph</name>
+    <description>Demo project for Spring Boot</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>demo-graph-api</module>
+        <module>demo-graph-register-center</module>
+        <module>demo-graph-dc</module>
+    </modules>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.klaus</groupId>
+                <artifactId>demo-graph-api</artifactId>
+                <version>${klaus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.klaus</groupId>
+                <artifactId>demo-graph-register-center</artifactId>
+                <version>${klaus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.klaus</groupId>
+                <artifactId>demo-graph-dc</artifactId>
+                <version>${klaus.version}</version>
+            </dependency>
+
+            <!--<dependency>-->
+                <!--<groupId>com.arangodb</groupId>-->
+                <!--<artifactId>arangodb-spring-data</artifactId>-->
+                <!--<version>3.1.0</version>-->
+            <!--</dependency>-->
+
+            <dependency>
+                <groupId>com.arangodb</groupId>
+                <artifactId>arangodb-spring-boot-starter</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+
+        </dependencies>
+
+
+
+
+    </dependencyManagement>
+
+</project>
