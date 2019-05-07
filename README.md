@@ -39,6 +39,6 @@ Having trouble with Pages? Check out our [documentation](https://help.github.com
 
 ### discuss with me at slack
 
-If you wanna know more detail, find me HERE, [Join] (https://learn-spring.slack.com)
+If you wanna know more detail, [Join Me](https://learn-spring.slack.com)
 
 
