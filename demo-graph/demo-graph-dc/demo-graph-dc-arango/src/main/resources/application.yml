@@ -25,5 +25,5 @@ logging:
     max-history: 60
   level:
     root: info
-    com.klaus: error
+    com.klaus: info
     com.arangodb: debug

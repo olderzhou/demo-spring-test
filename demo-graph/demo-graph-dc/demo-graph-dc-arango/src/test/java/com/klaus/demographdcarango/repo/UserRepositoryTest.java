@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.*;
@@ -28,6 +29,18 @@ public class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
+
+
+    @Test
+    public void testRedis() {
+        redisTemplate.opsForValue().set("name","klaus");
+
+        String name = redisTemplate.opsForValue().get("name");
+
+        log.info("get name from redis is :{}", name);
+    }
 
     @Test
     public void testSaveUser() {
@@ -35,8 +48,9 @@ public class UserRepositoryTest {
         User user = new User();
         user.setAge(10);
         user.setGender((short) 2);
-        user.setMobile("18664878092");
-        user.setName("klaus");
+        user.setMobile("18664878000");
+        user.setName("damon67");
+//        user.setId("65765647");
         user = userRepository.save(user);
 
         log.info("user is :{}", user);

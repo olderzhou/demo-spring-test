@@ -12,5 +12,20 @@ spring:
       database: graph_klaus
       user: root
       password: 123456
+  redis:
+#    cluster:
+#      nodes: 127.0.0.1:6379
+    #this is for redis cluster
+    jedis:
+      pool:
+        min-idle: 0
+        max-idle: 10
+        max-wait: 10ms
+        max-active: 10
+      #this is for single redis node
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+
 
 

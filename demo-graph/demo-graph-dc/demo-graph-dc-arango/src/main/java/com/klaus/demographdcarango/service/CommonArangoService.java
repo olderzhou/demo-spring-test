@@ -18,4 +18,19 @@ public interface CommonArangoService {
      */
     public boolean saveData(Map<String, Object> map);
 
+    /**
+     * for create database
+     * @param database define a database name
+     * @return boolean
+     */
+    public boolean createDataBases(String database);
+
+    /**
+     * create collection
+     * @param database
+     * @param options collection options
+     * @return boolean
+     */
+    public boolean createCollection(String database, Map<String, String> options);
+
 }

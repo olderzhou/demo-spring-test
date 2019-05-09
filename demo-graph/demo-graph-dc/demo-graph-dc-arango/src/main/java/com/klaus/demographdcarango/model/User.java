@@ -1,12 +1,17 @@
 package com.klaus.demographdcarango.model;
 
 import com.arangodb.entity.KeyType;
+import com.arangodb.springframework.annotation.ArangoId;
 import com.arangodb.springframework.annotation.Document;
 import com.arangodb.springframework.annotation.HashIndex;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.util.Date;
 
 /**
  * @author Klaus Mikaelson
@@ -22,7 +27,7 @@ import org.springframework.data.annotation.Id;
 @NoArgsConstructor
 public class User {
 
-    @Id
+    @ArangoId
     private String id;
 
     private String name;
@@ -30,6 +35,13 @@ public class User {
     private String mobile;
 
     private int age;
+
     //1:male, 2:female, 3:unknow
     private short gender;
+
+    @CreatedDate
+    private Date crateDt;
+
+    @LastModifiedDate
+    private Date updateDt;
 }
