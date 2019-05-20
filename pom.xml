@@ -28,7 +28,7 @@
         <module>demo-spring-state-machine</module>
         <module>demo-spring-kafka</module>
         <module>demo-spring-es</module>
-        <module>kafka-test-a</module>
+        <!--<module>kafka-test-a</module>-->
         <module>demo-graph</module>
 
     </modules>

@@ -15,26 +15,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>demo-graph-dc-arango</module>
         <module>demo-graph-dc-meta</module>
+        <module>demo-graph-dc-arango</module>
     </modules>
-
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.klaus</groupId>
-                <artifactId>demo-graph-dc-meta</artifactId>
-                <version>${klaus.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.klaus</groupId>
-                <artifactId>demo-graph-dc-arango</artifactId>
-                <version>${klaus.version}</version>
-            </dependency>
-        </dependencies>
-
-    </dependencyManagement>
-
 </project>

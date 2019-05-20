@@ -1,6 +1,7 @@
 package com.klaus.demographdcarango.model;
 
 import com.arangodb.entity.KeyType;
+import com.arangodb.entity.VertexEntity;
 import com.arangodb.springframework.annotation.ArangoId;
 import com.arangodb.springframework.annotation.Document;
 import com.arangodb.springframework.annotation.HashIndex;
@@ -25,10 +26,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
-
-    @ArangoId
-    private String id;
+public class User extends VertexEntity {
 
     private String name;
 

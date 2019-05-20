@@ -16,13 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
-/**
- * @author Klaus Mikaelson
- * @class demo-spring-test-com.klaus.kafka.kafkatesta.controller DataCenter
- * @description:
- * @date 2019/3/15 15:30
- */
-
 @Api
 @RestController("/dc")
 @Slf4j

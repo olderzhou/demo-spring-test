@@ -27,13 +27,6 @@ public class CommonArangoServiceImpl implements CommonArangoService {
     @Autowired
     private ArangoOperations arangoOperations;
 
-//    @Autowired
-//    private ArangoTemplate arangoTemplate;
-
-
-//    @Autowired
-//    private ArangoDB arangoDB;
-
     @Override
     public boolean saveData(Map<String, Object> map) {
 

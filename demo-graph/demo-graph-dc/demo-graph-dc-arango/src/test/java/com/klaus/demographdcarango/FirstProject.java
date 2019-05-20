@@ -14,7 +14,7 @@ import com.arangodb.velocypack.VPackSlice;
 public class FirstProject {
 
 	public static void main(final String[] args) {
-		final ArangoDB arangoDB = new ArangoDB.Builder().user("root").build();
+		final ArangoDB arangoDB = new ArangoDB.Builder().user("root").password("123456").build();
 
 		// create database
 		final String dbName = "mydb";
