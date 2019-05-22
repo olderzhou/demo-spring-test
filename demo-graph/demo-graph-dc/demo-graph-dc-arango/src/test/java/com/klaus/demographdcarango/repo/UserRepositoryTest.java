@@ -49,13 +49,13 @@ public class UserRepositoryTest {
         user.setAge(10);
         user.setGender((short) 2);
         user.setMobile("18664878000");
-        user.setName("damon67");
+        user.setName("damon70");
 //        user.setId("65765647");
         user = userRepository.save(user);
 
         log.info("user is :{}", user);
 
-        Assert.assertNotNull(user.getId());
+        Assert.assertNotNull(user);
 
     }
 }

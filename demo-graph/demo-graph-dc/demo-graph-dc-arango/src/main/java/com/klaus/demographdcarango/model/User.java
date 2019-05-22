@@ -1,5 +1,6 @@
 package com.klaus.demographdcarango.model;
 
+import com.arangodb.entity.DocumentField;
 import com.arangodb.entity.KeyType;
 import com.arangodb.entity.VertexEntity;
 import com.arangodb.springframework.annotation.ArangoId;
@@ -34,7 +35,9 @@ public class User extends VertexEntity {
 
     private int age;
 
-    //1:male, 2:female, 3:unknow
+    /**
+     * 1:male, 2:female, 3:unknow
+     */
     private short gender;
 
     @CreatedDate

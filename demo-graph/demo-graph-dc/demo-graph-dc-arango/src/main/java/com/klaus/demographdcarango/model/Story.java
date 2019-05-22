@@ -16,18 +16,11 @@ import java.util.List;
  * @description:
  * @date 2019/5/10 02:24
  */
-
-
-
-
-
 @Document(value = "story", replicationFactor = 1, numberOfShards = 4, keyType = KeyType.traditional)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Story {
-
-
 
     private Date startDt;
 
