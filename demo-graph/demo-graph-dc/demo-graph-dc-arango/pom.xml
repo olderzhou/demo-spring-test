@@ -7,11 +7,13 @@
         <artifactId>demo-graph-dc</artifactId>
         <version>${klaus.version}</version>
     </parent>
-    <groupId>com.klaus</groupId>
+    <groupId>com.example</groupId>
     <artifactId>demo-graph-dc-arango</artifactId>
     <version>${klaus.version}</version>
     <name>demo-graph-dc-arango</name>
-    <description>Demo project for Spring Boot</description>
+    <description>arango project for Spring Boot to test arango performance</description>
+
+
 
     <dependencies>
         <dependency>

@@ -17,5 +17,6 @@
     <modules>
         <module>demo-graph-dc-meta</module>
         <module>demo-graph-dc-arango</module>
+        <module>demo-graph-dc-neo4j</module>
     </modules>
 </project>
