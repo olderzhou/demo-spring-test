@@ -54,9 +54,11 @@ public class ActivitySigninRepositoryTest {
         signin.setLabel("register-activity");
         signin.setSigninDt(new Date());
         if(activityOptional.isPresent()) {
+            log.info("activityOptional data is :{}", activityOptional.get());
             signin.setTo(activityOptional.get());
         }
         if(registerOptional.isPresent()) {
+            log.info("registerOptional data is :{}", activityOptional.get());
             signin.setFrom(registerOptional.get());
         }
         log.info("######################################signin is: {}", signin);

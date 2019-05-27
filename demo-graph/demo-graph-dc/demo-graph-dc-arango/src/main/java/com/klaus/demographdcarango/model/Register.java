@@ -3,6 +3,7 @@ package com.klaus.demographdcarango.model;
 import com.arangodb.entity.EdgeEntity;
 import com.arangodb.entity.KeyType;
 import com.arangodb.entity.VertexEntity;
+import com.arangodb.springframework.annotation.ArangoId;
 import com.arangodb.springframework.annotation.Document;
 import com.arangodb.springframework.annotation.From;
 import com.arangodb.springframework.annotation.To;
@@ -24,8 +25,10 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Register extends VertexEntity {
+public class Register {
 
+    @ArangoId
+    private String id;
     private String name;
     private String mobile;
     private String workCompany;

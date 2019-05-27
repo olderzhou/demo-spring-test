@@ -1,6 +1,5 @@
 package com.klaus.demographdcarango.model;
 
-import com.arangodb.entity.EdgeEntity;
 import com.arangodb.springframework.annotation.Edge;
 import com.arangodb.springframework.annotation.From;
 import com.arangodb.springframework.annotation.To;
@@ -21,7 +20,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ActivitySignin extends EdgeEntity {
+public class ActivitySignin {
 
     @From
     private Register from;

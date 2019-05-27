@@ -27,7 +27,10 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User extends VertexEntity {
+public class User {
+
+    @ArangoId
+    private String id;
 
     private String name;
 
